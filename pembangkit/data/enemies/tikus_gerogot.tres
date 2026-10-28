@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tikus_gerogot"
+display_name = "Tikus Gerogot"
+tier = "biasa"
+role = "striker"
+max_hp = 15
+speed = 4.4
+damage = 1
+trigger_range = 1.9
+windup = 0.28
+lunge_speed = 11.0
+lunge_time = 0.16
+recover_time = 0.7
+retreat = true
+hit_radius = 0.7
+body_radius = 0.4
+raise_cost = 10
+raise_chance = 0.7
+essence_reward = 10
+shard_reward = 1
+sprite_path = "res://assets/sprites/tikus_gerogot.png"
+sprite_height = 1.5
+shade_hp = 18
+shade_damage = 4
+shade_attack_cd = 0.55
+shade_attack_range = 1.4
+shade_speed = 6.0

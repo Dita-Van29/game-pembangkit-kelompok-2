@@ -1,0 +1,458 @@
+[gd_scene load_steps=33 format=3]
+
+[ext_resource type="Script" path="res://scripts/workspace.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ground.png" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/characters/mira.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/characters/old_bram.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/characters/pip.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/slime_lumut.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/tikus_gerogot.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/shade_slime.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/shade_tikus.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/soul_orb.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://scenes/props/fire_hazard.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/props/house.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://scenes/props/house_burned.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://scenes/props/barn.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://scenes/props/well.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://scenes/props/cart.tscn" id="16"]
+[ext_resource type="PackedScene" path="res://scenes/props/cart_broken.tscn" id="17"]
+[ext_resource type="PackedScene" path="res://scenes/props/crate_080.tscn" id="18"]
+[ext_resource type="PackedScene" path="res://scenes/props/crate_100.tscn" id="19"]
+[ext_resource type="PackedScene" path="res://scenes/props/crate_110.tscn" id="20"]
+[ext_resource type="PackedScene" path="res://scenes/props/hay_bale.tscn" id="21"]
+[ext_resource type="PackedScene" path="res://scenes/props/torch.tscn" id="22"]
+[ext_resource type="PackedScene" path="res://scenes/props/garden_bed.tscn" id="23"]
+[ext_resource type="PackedScene" path="res://scenes/props/scarecrow.tscn" id="24"]
+[ext_resource type="PackedScene" path="res://scenes/props/pillar.tscn" id="25"]
+[ext_resource type="PackedScene" path="res://scenes/props/tree.tscn" id="26"]
+[ext_resource type="PackedScene" path="res://scenes/props/gate.tscn" id="27"]
+[ext_resource type="PackedScene" path="res://scenes/props/dev_sign.tscn" id="28"]
+[ext_resource type="PackedScene" path="res://scenes/levels/Stage1Level.tscn" id="29"]
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.05, 0.06, 0.12, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.55, 0.6, 0.85, 1)
+ambient_light_energy = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2"]
+size = Vector2(200, 170)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3"]
+albedo_color = Color(0.55, 0.6, 0.6, 1)
+albedo_texture = ExtResource("2")
+uv1_scale = Vector3(33, 28, 1)
+texture_filter = 2
+roughness = 1
+
+[node name="Workspace" type="Node3D"]
+script = ExtResource("1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.906308, 0.346189, -0.242404, 0, 0.573576, 0.819152, 0.422618, -0.742404, 0.519837, 0, 20, 0)
+light_color = Color(0.9, 0.92, 1, 1)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 20, 34)
+current = true
+fov = 55
+far = 400
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -0.12, -40)
+
+[node name="Karakter" type="Node3D" parent="."]
+
+[node name="TitleChars" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 6)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.8, 0.5, 1)
+outline_size = 12
+text = "KARAKTER & MUSUH"
+font_size = 90
+pixel_size = 0.01
+
+[node name="Mira" parent="Karakter" instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="MiraLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 3.6, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Mira (Player)"
+font_size = 40
+pixel_size = 0.01
+
+[node name="OldBram" parent="Karakter" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="OldBramLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.6, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Old Bram (NPC)"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Pip" parent="Karakter" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="PipLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.6, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Pip (lentera)"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Slime" parent="Karakter" instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="SlimeLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.2, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Slime Lumut"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Tikus" parent="Karakter" instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="TikusLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Tikus Gerogot"
+font_size = 40
+pixel_size = 0.01
+
+[node name="ShadeSlime" parent="Karakter" instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="ShadeSlimeLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.2, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Shade Slime (Tank)"
+font_size = 40
+pixel_size = 0.01
+
+[node name="ShadeTikus" parent="Karakter" instance=ExtResource("9")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="ShadeTikusLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Shade Tikus (Striker)"
+font_size = 40
+pixel_size = 0.01
+
+[node name="SoulOrb" parent="Karakter" instance=ExtResource("10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="SoulOrbLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.6, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Soul Orb"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Fire" parent="Karakter" instance=ExtResource("11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="FireLabel" type="Label3D" parent="Karakter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.6, 2.2)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Api (bahaya)"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Bangunan" type="Node3D" parent="."]
+
+[node name="TitleBuild" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -9)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.8, 0.5, 1)
+outline_size = 12
+text = "BANGUNAN"
+font_size = 90
+pixel_size = 0.01
+
+[node name="House" parent="Bangunan" instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -14)
+
+[node name="HouseLabel" type="Label3D" parent="Bangunan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 6, -11.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Rumah"
+font_size = 40
+pixel_size = 0.01
+
+[node name="HouseBurned" parent="Bangunan" instance=ExtResource("13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -14)
+
+[node name="HouseBurnedLabel" type="Label3D" parent="Bangunan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, -11.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Rumah terbakar"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Barn" parent="Bangunan" instance=ExtResource("14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -14)
+
+[node name="BarnLabel" type="Label3D" parent="Bangunan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6, -11.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Lumbung"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Well" parent="Bangunan" instance=ExtResource("15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -14)
+
+[node name="WellLabel" type="Label3D" parent="Bangunan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 6, -11.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Sumur"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Cart" parent="Bangunan" instance=ExtResource("16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -14)
+
+[node name="CartLabel" type="Label3D" parent="Bangunan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 6, -11.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Gerobak"
+font_size = 40
+pixel_size = 0.01
+
+[node name="BrokenCart" parent="Bangunan" instance=ExtResource("17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -14)
+
+[node name="BrokenCartLabel" type="Label3D" parent="Bangunan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 6, -11.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Gerobak rusak"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Prop" type="Node3D" parent="."]
+
+[node name="TitleProps" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -24)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.8, 0.5, 1)
+outline_size = 12
+text = "PROP & LINGKUNGAN"
+font_size = 90
+pixel_size = 0.01
+
+[node name="Crate080" parent="Prop" instance=ExtResource("18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -30)
+
+[node name="Crate080Label" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Peti kecil"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Crate100" parent="Prop" instance=ExtResource("19")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -30)
+
+[node name="Crate100Label" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Peti"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Crate110" parent="Prop" instance=ExtResource("20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -30)
+
+[node name="Crate110Label" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Peti besar"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Hay" parent="Prop" instance=ExtResource("21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -30)
+
+[node name="HayLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Jerami"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Torch" parent="Prop" instance=ExtResource("22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -30)
+
+[node name="TorchLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Obor"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Garden" parent="Prop" instance=ExtResource("23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -30)
+
+[node name="GardenLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Bedeng kebun"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Scarecrow" parent="Prop" instance=ExtResource("24")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -30)
+
+[node name="ScarecrowLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Orang-orangan sawah"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Pillar" parent="Prop" instance=ExtResource("25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, -30)
+
+[node name="PillarLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Pilar gerbang"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Tree" parent="Prop" instance=ExtResource("26")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -30)
+
+[node name="TreeLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Pohon"
+font_size = 40
+pixel_size = 0.01
+
+[node name="Gate" parent="Prop" instance=ExtResource("27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -30)
+
+[node name="GateLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Gerbang segel"
+font_size = 40
+pixel_size = 0.01
+
+[node name="DevSign" parent="Prop" instance=ExtResource("28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, -30)
+
+[node name="DevSignLabel" type="Label3D" parent="Prop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 5, -27.8)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.95, 0.75, 1)
+outline_size = 12
+text = "Papan Developer"
+font_size = 40
+pixel_size = 0.01
+
+[node name="TitleLevel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 9, -52)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.7, 0.9, 1, 1)
+outline_size = 12
+text = "LEVEL STAGE 1 LENGKAP  (scenes/levels/Stage1Level.tscn)"
+font_size = 80
+pixel_size = 0.01
+
+[node name="Stage1Level" parent="." instance=ExtResource("29")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -75)

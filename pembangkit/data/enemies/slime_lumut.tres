@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "slime_lumut"
+display_name = "Slime Lumut"
+tier = "biasa"
+role = "tank"
+max_hp = 20
+speed = 2.0
+damage = 1
+trigger_range = 2.3
+windup = 0.55
+lunge_speed = 7.0
+lunge_time = 0.28
+recover_time = 0.9
+retreat = false
+hit_radius = 0.9
+body_radius = 0.55
+raise_cost = 10
+raise_chance = 0.7
+essence_reward = 10
+shard_reward = 1
+sprite_path = "res://assets/sprites/slime_lumut.png"
+sprite_height = 1.9
+shade_hp = 30
+shade_damage = 5
+shade_attack_cd = 1.0
+shade_attack_range = 1.7
+shade_speed = 3.4

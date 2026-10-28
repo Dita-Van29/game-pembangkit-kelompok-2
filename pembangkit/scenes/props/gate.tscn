@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3]
+
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(0.9, 3, 6.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2"]
+size = Vector3(0.3, 2.5, 0.55)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3"]
+albedo_color = Color(0.36, 0.23, 0.13, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_4"]
+size = Vector3(0.36, 0.2, 6.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5"]
+albedo_color = Color(0.27, 0.17, 0.1, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_6"]
+size = Vector3(0.25, 3.4, 6.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7"]
+albedo_color = Color(0.6, 0.3, 1, 0.38)
+roughness = 0.9
+emission_enabled = true
+emission = Color(0.6, 0.3, 1, 1)
+emission_energy_multiplier = 1.6
+transparency = 1
+shading_mode = 0
+
+[node name="Gate" type="Node3D"]
+
+[node name="Body" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape3D" parent="Body"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Plank1" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -2.7)
+
+[node name="Plank2" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1.8)
+
+[node name="Plank3" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.9)
+
+[node name="Plank4" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="Plank5" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.9)
+
+[node name="Plank6" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1.8)
+
+[node name="Plank7" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 2.7)
+
+[node name="RailLow" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_4")
+material_override = SubResource("StandardMaterial3D_5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="RailHigh" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("BoxMesh_4")
+material_override = SubResource("StandardMaterial3D_5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+
+[node name="Mist" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6")
+material_override = SubResource("StandardMaterial3D_7")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+cast_shadow = 0
+
+[node name="GateLight" type="OmniLight3D" parent="." groups=["flicker"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+light_color = Color(0.65, 0.35, 1, 1)
+light_energy = 1.4
+omni_range = 7

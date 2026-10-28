@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/soul_orb.gd" id="1"]
+[ext_resource type="Resource" path="res://data/enemies/slime_lumut.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/soul_orb.png" id="3"]
+
+[node name="SoulOrb" type="Node3D"]
+script = ExtResource("1")
+data = ExtResource("2")
+forced = true
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+pixel_size = 0.014063
+billboard = 1
+double_sided = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3")
+shaded = false
+modulate = Color(1.2, 1.2, 1.6, 1)
+
+[node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.55, 0.7, 1, 1)
+light_energy = 1.4
+omni_range = 5
+
+[node name="Prompt" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+billboard = 1
+no_depth_test = true
+outline_size = 12
+text = "[E] RAISE"
+font_size = 40
+pixel_size = 0.008

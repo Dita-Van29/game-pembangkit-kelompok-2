@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/shade.gd" id="1"]
+[ext_resource type="Resource" path="res://data/enemies/slime_lumut.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/slime_lumut.png" id="3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.55
+height = 1.32
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2"]
+top_radius = 0.825
+bottom_radius = 0.825
+height = 0.02
+radial_segments = 24
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3"]
+albedo_color = Color(0.55, 0.4, 1, 0.55)
+roughness = 0.9
+emission_enabled = true
+emission = Color(0.55, 0.4, 1, 1)
+emission_energy_multiplier = 1.6
+transparency = 1
+shading_mode = 0
+
+[node name="ShadeSlimeLumut" type="CharacterBody3D"]
+script = ExtResource("1")
+data = ExtResource("2")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07, 0)
+pixel_size = 0.029687
+billboard = 2
+double_sided = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3")
+shaded = false
+modulate = Color(0.55, 0.6, 1.5, 1)
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_2")
+material_override = SubResource("StandardMaterial3D_3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+cast_shadow = 0
+
+[node name="Aura" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.5, 0.45, 1, 1)
+light_energy = 1
+omni_range = 4
